@@ -24,6 +24,6 @@
 //belongs to attendance plugin
   
 defined('MOODLE_INTERNAL') || die();
-$plugin->pluginname = "local_Proyecto";
-$plugin->component = 'local_Proyecto';
-$plugin->version   = '2015051300';//añomesdiacambio
+$plugin->pluginname = "local_proyecto";
+$plugin->component = 'local_proyecto';
+$plugin->version   = '2015051800';//aï¿½omesdiacambio
