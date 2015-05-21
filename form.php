@@ -18,8 +18,8 @@
  * 
  * @package    local
  * @subpackage reservasalas
- * @copyright  2014 Francisco García Ralph (francisco.garcia.ralph@gmail.com)
- * 					Nicolás Bañados Valladares (nbanados@alumnos.uai.cl)
+ * @copyright  2014 Francisco Garcï¿½a Ralph (francisco.garcia.ralph@gmail.com)
+ * 					Nicolï¿½s Baï¿½ados Valladares (nbanados@alumnos.uai.cl)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once(dirname(__FILE__) . '/../../config.php');
@@ -27,16 +27,11 @@ require_once($CFG->libdir.'/formslib.php');
 class comment extends moodleform {
 	function definition() {
 		global $CFG;
-		$mform =& $this->_form;	$options = array(
-    'ff0000' => 'Chile',
-    '00ff00' => 'Argentina',
-    '0000ff' => 'Italia'
-);
+		$mform =& $this->_form;	$options = get_courses();
 		$asignaturas = array('leng' => 'Lenguaje','mat' => 'Matematica','ing'=> 'Ingles');
-$select = $mform->addElement('select', 'País',"Pais", $options);
+$select = $mform->addElement('select', 'Pais',"Pais", $options);
 // This will select the colour blue.
 $select->setSelected('0000ff');
-$select2= $mform->addElement('select','Asignatura','Asignatura',$asignaturas);
-			$this->add_action_buttons(true,'Enviar');//true es q tendra boton cancelar
+$select2= $mform->addElement('select','Asignatura','Asignatura',$asignaturas);	$this->add_action_buttons(true,'Enviar');//true es q tendra boton cancelar
 }
 }?>

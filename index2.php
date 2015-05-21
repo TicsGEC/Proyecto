@@ -3,7 +3,7 @@ require_once(dirname(__FILE__) . '/../../config.php'); //obligatorio
 require_once($CFG->dirroot.'/local/Proyecto/form.php');// IMPOORTANMTE
 global $PAGE, $CFG, $OUTPUT, $DB, $USER;
 
-$url = new moodle_url('/local/Proyecto/index.php');
+$url = new moodle_url('/local/Proyecto/index2.php');
 $context = context_system::instance();
 
 $PAGE->set_url($url);
