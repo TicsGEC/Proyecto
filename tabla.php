@@ -20,10 +20,10 @@ class tablas{
 	public static function armartabla($archivos=null){
 		global $DB, $OUTPUT;
 		$tabla = new html_table();
-		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo');
+		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
 		
 		foreach ($archivos as $archivo){
-			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo);
+			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button('','Añadir'));
 		
 		}
 		

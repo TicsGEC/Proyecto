@@ -26,12 +26,11 @@ if ($formulario->is_cancelled()) {
 	 $record->contenido = $fromforms->contenido;
 	 $record->tipoderecursos = $fromforms->recurso;
 $archivos= $DB->get_records('local_proyecto',array('asignatura'=>$fromforms->asignatura,'pais'=>$fromforms->pais,'seccion'=>$fromforms->seccion,'contenido'=>$fromforms->contenido,'tipoderecursos'=>$fromforms->recurso));
+
 if ($archivos !=NULL){
 	$tabla= tablas::armartabla($archivos);
 	echo html_writer::table($tabla);
-	
-	
-}
+echo $OUTPUT->single_button('index.php','Volver a Buscar');}
 else{
 	echo "No se han encontrado Archivos";
 }}
