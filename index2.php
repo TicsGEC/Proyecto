@@ -10,7 +10,7 @@ $PAGE->set_pagelayout ( 'standard' );
 $PAGE->set_heading ( 'GEC' );
 $PAGE->navbar->add ( 'Busqueda de Cursos' );
 $PAGE->navbar->add ( 'INDEX' );
-echo $OUTPUT->header ();
+echo $OUTPUT->header ('Ingreso de Datos');
 echo $OUTPUT->heading ( 'Ingreso de Datos' );
 
 
