@@ -1,7 +1,7 @@
  <?php
  function xmldb_local_proyecto_upgrade($oldversion) {
  	global $CFG, $DB;
-    if ($oldversion <2015051200 ) {
+    if ($oldversion <2015061300 ) {
 
         // Define field id to be added to local_proyecto.
         $table = new xmldb_table('local_proyecto');
@@ -13,7 +13,7 @@
         }
 
         // Proyecto savepoint reached.
-        upgrade_plugin_savepoint(true, 2015051300, 'local', 'proyecto');
+        upgrade_plugin_savepoint(true, 2015061300, 'local', 'proyecto');
     }
  }
  return true;
