@@ -94,31 +94,9 @@ class formu extends moodleform {
 		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE CONTEXTO', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'asignatura', "Asignatura", $options0 );
 		$mform->addElement ( 'select', 'pais', "Pais", $options1 );
-		$mform->addElement ( 'select', 'plataforma', "Plataforma", $options2 );
-		$mform->addElement ( 'select', 'grado', "Grado", $options3 );
 		$mform->addElement ( 'select', 'seccion', "Seccion", $options4 );
-		$mform->addElement ( 'select', 'eje', "Eje", $options5 );
 		$mform->addElement ( 'select', 'contenido', "Contenido", $options6 );
-		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE RECUSOS', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'recurso', "Tipo de Recurso", $options7 );
-		$mform->addElement ( 'select', 'estilo', "Estilo", $options8 );
-		$mform->addElement ( 'select', 'localizacion', "Localizacion", $options9 );
-		$mform->addElement ( 'select', 'responsive', "Responsive", $options10 );
-		$mform->addElement ( 'select', 'skin', "Skin", $options11 );
-		$mform->addElement ( 'date_selector', 'assesstimefinish', 'Desde' );
-		array (
-				'startyear' => 1970,
-				'stopyear' => 2020,
-				'timezone' => 99,
-				'optional' => false
-		);
-		$mform->addElement ( 'date_selector', 'assesstimefinish', 'Hasta' );
-		array (
-				'startyear' => 1970,
-				'stopyear' => 2020,
-				'timezone' => 99,
-				'optional' => false
-		);
 		$this->add_action_buttons ( true, 'Enviar' );
 	}
 }
