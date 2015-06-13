@@ -16,116 +16,65 @@
 // a
 /**
  *
- * @package local
- * @subpackage reservasalas
- * @copyright 2014 Francisco García Ralph (francisco.garcia.ralph@gmail.com)
- *            Nicolás Bañados Valladares (nbanados@alumnos.uai.cl)
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+* @package local
+* @subpackage reservasalas
+* @copyright 2014 Francisco GarcÃ­a Ralph (francisco.garcia.ralph@gmail.com)
+*            NicolÃ¡s BaÃ±ados Valladares (nbanados@alumnos.uai.cl)
+* @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+*/
 require_once (dirname ( __FILE__ ) . '/../../config.php');
 require_once ("$CFG->libdir/formslib.php");
-
-class formulario extends moodleform {
+class formu extends moodleform {
 	function definition() {
 		global $CFG;
-		
 		$mform = $this->_form;
-		
 		// Arreglos que contienen datos de select
 		$options0 = array (
-				'Mat' => 'Matematicas',
-				'Len' => 'Lenguaje',
-				'Cien' => 'Ciencias Naturales',
-				'Hist' => 'Ciencias Sociales' 
+				'Matematicas' => 'Matematicas',
+				'Lenguaje' => 'Lenguaje',
+				'Ciencias Naturales' => 'Ciencias Naturales',
+				'Historia' => 'Ciencias Sociales'
 		);
 		$options1 = array (
-				'Ch' => 'Chile',
-				'Arg' => 'Argentina',
-				'Pe' => 'Peru' 
+				'Chile' => 'Chile',
+				'Argentina' => 'Argentina',
+				'Peru' => 'Peru'
 		);
-		$options2 = array (
-				'1' => '1',
-				'2' => '2',
-				'3' => '3' 
-		);
-		$options3 = array (
-				'Primer' => 'Primer',
-				'Segundo' => 'Segundo',
-				'Tercer' => 'Tercer' 
-		);
+		
 		$options4 = array (
 				'1' => '1',
 				'2' => '2',
-				'3' => '3' 
+				'3' => '3'
 		);
-		$options5 = array (
-				'1' => 'Eje1',
-				'2' => 'Eje2',
-				'3' => 'Eje3' 
-		);
+		
 		$options6 = array (
 				'Cont1' => 'Contenido1',
 				'Cont2' => 'Contenido2',
-				'Cont3' => 'Contenido3' 
+				'Cont3' => 'Contenido3'
 		);
 		$options7 = array (
-				'Rec1' => 'Recurso1',
-				'Rec2' => 'Recurso2',
-				'Rec3' => 'Recurso3' 
+				'Rec1' => 'Audio',
+				'Rec2' => 'Video',
+				'Rec3' => 'Texto'
 		);
-		$options8 = array (
-				'Style1' => 'Estilo1',
-				'Style2' => 'Estilo2',
-				'Style3' => 'Estilo3' 
-		);
-		$options9 = array (
-				'Loc1' => 'Localizacion1',
-				'Loc2' => 'Localizacion2',
-				'Loc3' => 'Localizacion3' 
-		);
-		$options10 = array (
-				'Respon1' => 'Responsive1',
-				'Respon2' => 'Responsive2',
-				'Respon3' => 'Responsive3' 
-		);
-		$options11 = array (
-				'Skin1' => 'Skin1',
-				'Skin2' => 'Skin2',
-				'Skin3' => 'Skin3' 
-		);
-		
+	
 		// Creacion de selects
 		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE CONTEXTO', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'asignatura', "Asignatura", $options0 );
 		$mform->addElement ( 'select', 'pais', "Pais", $options1 );
-		$mform->addElement ( 'select', 'plataforma', "Plataforma", $options2 );
-		$mform->addElement ( 'select', 'grado', "Grado", $options3 );
 		$mform->addElement ( 'select', 'seccion', "Seccion", $options4 );
-		$mform->addElement ( 'select', 'eje', "Eje", $options5 );
 		$mform->addElement ( 'select', 'contenido', "Contenido", $options6 );
-		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE RECUSOS', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'recurso', "Tipo de Recurso", $options7 );
-		$mform->addElement ( 'select', 'estilo', "Estilo", $options8 );
-		$mform->addElement ( 'select', 'localizacion', "Localizacion", $options9 );
-		$mform->addElement ( 'select', 'responsive', "Responsive", $options10 );
-		$mform->addElement ( 'select', 'skin', "Skin", $options11 );
-		$mform->addElement ( 'date_selector', 'assesstimefinish', 'Desde' );
-		array (
-				'startyear' => 1970,
-				'stopyear' => 2020,
-				'timezone' => 99,
-				'optional' => false 
-		);
-		$mform->addElement ( 'date_selector', 'assesstimefinish', 'Hasta' );
-		array (
-				'startyear' => 1970,
-				'stopyear' => 2020,
-				'timezone' => 99,
-				'optional' => false 
-		);
-		
+		$mform->addElement ('textfield','nombredearchivo',"Nombre de Archivo");
 		$this->add_action_buttons ( true, 'Enviar' );
-	
 	}
 }
+class check extends moodleform {
+	function definition() {
+		global $CFG;
+		$mform = $this->_form;
+		
+	}
+}
+		
 ?>
