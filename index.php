@@ -1,6 +1,7 @@
 <?php
 require_once (dirname ( __FILE__ ) . '/../../config.php'); // obligatorio
 require_once ($CFG->dirroot . '/local/proyecto/forms.php');
+require_once ($CFG->dirroot . '/local/proyecto/tabla.php');
 global $PAGE, $CFG, $OUTPUT, $DB, $USER;
 $url = new moodle_url ( '/local/proyecto/index.php' );
 $context = context_system::instance ();
@@ -19,32 +20,21 @@ if ($formulario->is_cancelled()) {
 	echo 'Usted no ingreso comentarios';
 } else if ($fromforms = $formulario->get_data()) {
 	$record = new stdClass();
-	echo $record->asignatura = $fromforms->asignatura ;
-	echo ("<br>");
-	echo $record->pais = $fromforms->pais;
-	echo ("<br>");
-	echo $record->plataforma = $fromforms->plataforma;
-	echo ("<br>");
-	echo $record->grado = $fromforms->grado;
-	echo ("<br>");
-	echo $record->seccion = $fromforms->seccion;
-	echo ("<br>");
-	echo $record->eje = $fromforms->eje;
-	echo ("<br>");
-	echo $record->contenido = $fromforms->contenido;
-	echo ("<br>");
-	echo $record->recurso = $fromforms->recurso;
-	echo ("<br>");
-	echo $record->estilo = $fromforms->estilo;
-	echo ("<br>");
-	echo $record->localizacion = $fromforms->localizacion;
-	echo ("<br>");
-	echo $record->responsive = $fromforms->responsive;
-	echo ("<br>");
-	echo $record->skin = $fromforms->skin;
-	echo ("<br>");
+	$record->asignatura =$fromforms->asignatura ;
+	 $record->pais = $fromforms->pais;
+	$record->seccion = $fromforms->seccion;
+	 $record->contenido = $fromforms->contenido;
+	 $record->tipoderecursos = $fromforms->recurso;
+$archivos= $DB->get_records('local_proyecto',array('asignatura'=>$fromforms->asignatura,'pais'=>$fromforms->pais,'seccion'=>$fromforms->seccion,'contenido'=>$fromforms->contenido,'tipoderecursos'=>$fromforms->recurso));
+if ($archivos !=NULL){
+	$tabla= tablas::armartabla($archivos);
+	echo html_writer::table($tabla);
 	
-} 
+	
+}
+else{
+	echo "No se han encontrado Archivos";
+}}
 else {
 	$formulario->display();
 }

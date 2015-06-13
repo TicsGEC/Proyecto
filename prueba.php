@@ -42,3 +42,8 @@ echo ("<br>");
 
 echo $OUTPUT->footer();
 ?>
+echo "<b> Archivos Encontrados </b>"."</br>";
+echo "<table style='width:100%'>"."<tr>"."<th> Asignatura </th> <th> Pais </th> <th> Seccion </th>". "<th> Contenido </th>"." <th> Tipo de Recurso <th>"."<th> Nombre de archivo </th>"."</tr>";
+foreach($archivos as $archivo){
+	echo "<tr>"."<td>".$archivo->asignatura."</td>"."<td>".$archivo->pais."</td>"."<td>".$archivo->seccion."</td>"."<td>".$archivo->contenido."</td>"."<td>".$archivo->tipoderecursos."</td>"."<td>".$archivo->nombredearchivo."</td> </tr>";
+}"</table>";

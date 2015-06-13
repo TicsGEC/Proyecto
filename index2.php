@@ -26,7 +26,8 @@ if ($formulario->is_cancelled()) {
 	 $record->tipoderecursos = $fromforms->recurso;
 $record->nombredearchivo = $fromforms->nombre;
  $lastinsertid= $DB->insert_record('local_proyecto',$record);
-} 
+echo "Datos Guardados Correctamente";
+echo $renderer->single_button('$url', 'Volver');} 
 else {
 	$formulario->display();
 }
