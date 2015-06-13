@@ -23,8 +23,8 @@ if ($formulario->is_cancelled()) {
 	 $record->pais = $fromforms->pais;
 	$record->seccion = $fromforms->seccion;
 	 $record->contenido = $fromforms->contenido;
-	 $record->tipoderecurso = $fromforms->recurso;
-$record->nombredearchivo = $fromforms->nombredearchivo;
+	 $record->tipoderecursos = $fromforms->recurso;
+$record->nombredearchivo = $fromforms->nombre;
  $lastinsertid= $DB->insert_record('local_proyecto',$record);
 } 
 else {
