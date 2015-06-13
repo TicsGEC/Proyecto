@@ -29,7 +29,7 @@
  function xmldb_local_proyecto_upgrade($oldversion) {
  	global $CFG, $DB;
  	$dbman = $DB->get_manager();
-     if ($oldversion < 2015061301) {
+     if ($oldversion < 2015061302) {
 
         // Define table local_proyecto to be created.
         $table = new xmldb_table('local_proyecto');
@@ -52,7 +52,7 @@
         }
 
         // Proyecto savepoint reached.
-        upgrade_plugin_savepoint(true, 2015061301, 'local', 'proyecto');
+        upgrade_plugin_savepoint(true, 2015061302, 'local', 'proyecto');
     }
  }
  return true;

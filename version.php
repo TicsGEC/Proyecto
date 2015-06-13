@@ -26,4 +26,4 @@
 defined('MOODLE_INTERNAL') || die();
 $plugin->pluginname = "local_proyecto";
 $plugin->component = 'local_proyecto';
-$plugin->version   = '2015061301';//a�omesdiacambio
+$plugin->version   = '2015061302';//a�omesdiacambio
