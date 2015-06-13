@@ -65,7 +65,7 @@ class formu extends moodleform {
 		$mform->addElement ( 'select', 'seccion', "Seccion", $options4 );
 		$mform->addElement ( 'select', 'contenido', "Contenido", $options6 );
 		$mform->addElement ( 'select', 'recurso', "Tipo de Recurso", $options7 );
-		$mform->addElement ('textfield','nombredearchivo',"Nombre de Archivo");
+		$mform->addElement ('text','nombredearchivo',"Nombre de Archivo");
 		$this->add_action_buttons ( true, 'Enviar' );
 	}
 }
