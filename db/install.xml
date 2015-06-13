@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/proyecto/db" VERSION="20150520" COMMENT="XMLDB file for Moodle local/proyecto"
+<XMLDB PATH="local/proyecto/db" VERSION="20150613" COMMENT="XMLDB file for Moodle local/proyecto"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -12,6 +12,7 @@
         <FIELD NAME="tipoderecursos" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="contenido" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false"/>
         <FIELD NAME="seccion" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="nombredearchivo" TYPE="char" LENGTH="1333" NOTNULL="true" SEQUENCE="false" COMMENT="nombre del archivo guardado"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
