@@ -84,7 +84,7 @@ $cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asign
  	//En caso de no Escribirse Nada en el Campo de Nombre de archivo
  	else 
  	{
- 		echo 'Tiene que Ingresar Nombre de Archivo'."</br>"."</br>";
+ 		echo ' Dato No Agregado, Tiene que Ingresar Nombre de Archivo'."</br>"."</br>";
  		
  		$head=array(' ',' ');
  		$data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
