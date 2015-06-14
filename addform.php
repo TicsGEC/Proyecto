@@ -24,6 +24,8 @@
 */
 require_once (dirname ( __FILE__ ) . '/../../config.php');
 require_once ("$CFG->libdir/formslib.php");
+
+//Creacion del formulario para Agregar Datos
 class formu extends moodleform {
 	function definition() {
 		global $CFG, $OUTPUT;
@@ -55,13 +57,14 @@ class formu extends moodleform {
 				'Cont2' => 'Contenido2',
 				'Cont3' => 'Contenido3'
 		);
+		
 		$options7 = array (
 				'Audio' => 'Audio',
 				'Video' => 'Video',
 				'Texto' => 'Texto'
 		);
 	
-		// Creacion de selects
+		// Creacion de selects con las diferentes opciones para cada uno
 		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE CONTEXTO', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'asignatura', "Asignatura", $options0 );
 		$mform->addElement ( 'select', 'pais', "Pais", $options1 );

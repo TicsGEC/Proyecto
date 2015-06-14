@@ -15,6 +15,7 @@ $PAGE->navbar->add ( 'INDEX' );
 echo $OUTPUT->header ();
 echo $OUTPUT->heading ( 'Mis Opciones' );
 
+//Despliega Tabla con Botones Para Interactuar
 
 $head=array(' ',' ',' ');
 $data=array($OUTPUT->single_button('buscar.php','Buscar Datos'),$OUTPUT->single_button('elecciones.php','Mis Elecciones'),$OUTPUT->single_button('agregar.php','Añadir Datos'));

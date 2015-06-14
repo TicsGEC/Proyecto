@@ -23,10 +23,12 @@ echo $OUTPUT->heading ( 'Ingreso de Datos' );
 $formulario = new formu();
 
 
+// En caso de no enviarse el Formulario
 if ($formulario->is_cancelled())
  {
 	echo 'Usted no Ingreso Datos'."</br>"."</br>";
 	
+	//Crea tabla con los Botones para Volver
 	$head=array(' ',' ');
 	$data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
 	$tabla2= tablas::armarbusqueda($data);
@@ -34,8 +36,11 @@ if ($formulario->is_cancelled())
 	
 }
 
+//En caso de enviarse el formulario
+
  else if ($fromforms = $formulario->get_data()) {
  	
+ 	//Si el nombre del archivo no es nulo
  	if($fromforms->nombre != null)
  	{
  		
@@ -49,7 +54,7 @@ $record->nombredearchivo = $fromforms->nombre;
 
 $cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asignatura,'pais'=>$fromforms->pais,'seccion'=>$fromforms->seccion,'contenido'=>$fromforms->contenido,'tipoderecursos'=>$fromforms->recurso,'nombredearchivo'=>$fromforms->nombre));
 
- 
+ //Cuenta en la base de datos si ya existe esa entrada, en caso de existir No deja ingresar Datos
  If($cont==0)
  {
  	$lastinsertid= $DB->insert_record('local_proyecto',$record);
@@ -61,6 +66,8 @@ $cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asign
  }
 
  
+ 
+ //Si detecto que ya existe en la base de datos
  else 
  {
  	echo 'Entrada Duplicada, Pruebe con otro Nombre'."</br>"."</br>";
@@ -74,9 +81,10 @@ $cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asign
  	}
  	
  	
+ 	//En caso de no Escribirse Nada en el Campo de Nombre de archivo
  	else 
  	{
- 		echo 'Usted no Ingreso Datos'."</br>"."</br>";
+ 		echo 'Tiene que Ingresar Nombre de Archivo'."</br>"."</br>";
  		
  		$head=array(' ',' ');
  		$data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
@@ -86,7 +94,7 @@ $cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asign
 
  } 
 
-
+// Despliega el formulario 
 else {
 	$formulario->display();
 }

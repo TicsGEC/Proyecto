@@ -24,6 +24,8 @@
 */
 require_once (dirname ( __FILE__ ) . '/../../config.php');
 require_once ("$CFG->libdir/formslib.php");
+
+//Creacion del formulario de Busqueda
 class formu extends moodleform {
 	function definition() {
 		global $CFG, $OUTPUT;
@@ -58,7 +60,7 @@ class formu extends moodleform {
 				'Texto' => 'Texto'
 		);
 	
-		// Creacion de selects
+		// Creacion de selects con diferentes opciones menos la de ingresar Nombre
 		$mform->addElement ( 'static', 'description', get_string ( 'FILTRO DE CONTEXTO', 'exercise' ), get_string ( '', 'exercise', $COURSE->students ) );
 		$mform->addElement ( 'select', 'asignatura', "Asignatura", $options0 );
 		$mform->addElement ( 'select', 'pais', "Pais", $options1 );

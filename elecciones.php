@@ -15,8 +15,36 @@ echo $OUTPUT->header ('Mis Elecciones');
 echo $OUTPUT->heading ('Mis Elecciones');
 
 $myuser=$USER->id;
+//Busca los Datos añadidos al carro de compra según el ID
+$elecciones= $DB->get_records('elecciones',array('userid'=>$myuser));
 
-echo $myuser=$USER->id;
+//Si encuentra datos los despliega
+if($elecciones!=null)
+{
+	
+	$tablaelecciones= tablas::armartabla($elecciones);
+	echo html_writer::table($tablaelecciones);
+	
+	$head=array(' ');
+	$data=array($OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+	$tabla2= tablas::armarbusqueda($data);
+	echo html_writer::table($tabla2);
+	
+}
+
+
+//SI no encuentra los datos
+else 
+{
+	
+	echo "Usted no tiene ninguna eleccion hasta el momento";
+	$head=array(' ');
+	$data=array($OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+	$tabla2= tablas::armarbusqueda($data);
+	echo html_writer::table($tabla2);
+	
+}
+
 
 echo $OUTPUT->footer();
 

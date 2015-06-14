@@ -4,6 +4,7 @@ require_once ($CFG->dirroot . '/local/proyecto/searchform.php');
 require_once ($CFG->dirroot . '/local/proyecto/tabla.php');
 global $PAGE, $CFG, $OUTPUT, $DB, $USER;
  require_login ();
+ 
 $url = new moodle_url ( '/local/proyecto/buscar.php' );
 $context = context_system::instance ();
 $PAGE->set_url ( $url );
@@ -18,10 +19,11 @@ echo $OUTPUT->heading ( 'Buscador' );
 
 $formulario = new formu();
 
-
+// En caso de Presionar Cancelar
 if ($formulario->is_cancelled()) {
 	
-	echo 'Usted no ingreso comentarios'."</br>"."</br>";
+	echo 'Usted no ingreso busqueda'."</br>"."</br>";
+	//Creacion de Tabla con los botones Volver
 	$head=array(' ',' ');
 	$data=array($OUTPUT->single_button('buscar.php','Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
 	$tabla2= tablas::armarbusqueda($data);
@@ -30,6 +32,7 @@ if ($formulario->is_cancelled()) {
 } 
 
 
+//En caso de enviarse el cuestionario
 else if ($fromforms = $formulario->get_data()) {
 	
 	$record = new stdClass();
@@ -39,14 +42,16 @@ else if ($fromforms = $formulario->get_data()) {
 	 $record->contenido = $fromforms->contenido;
 	 $record->tipoderecursos = $fromforms->recurso;
 	 
+	 //Busca Los Archivos de la Base de Datos
 $archivos= $DB->get_records('local_proyecto',array('asignatura'=>$fromforms->asignatura,'pais'=>$fromforms->pais,'seccion'=>$fromforms->seccion,'contenido'=>$fromforms->contenido,'tipoderecursos'=>$fromforms->recurso));
 
 
 
-
+//En caso de existir el Archivo
 if ($archivos !=NULL){
 	$myuser=$USER->id;
 	
+	//Creacion de Tabla Con los Datos Encontrados
 	$tabla= tablas::armartabla($archivos);
 	echo html_writer::table($tabla);
 	
@@ -56,18 +61,23 @@ if ($archivos !=NULL){
 	} 
 	
        
-       
+       //En caso De No Encontrarse
 else
 {
 	echo "No se han encontrado Archivos";
              $head=array(' ',' ');
+             
+             //Creacion de tabla con botones volver
+             
 	$data=array($OUTPUT->single_button('buscar.php','Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
 	$tabla2= tablas::armarbusqueda($data);
-	echo html_writer::table($tabla2);    }
-       }
+	echo html_writer::table($tabla2);    
+ }
+
+   }
 
 
-
+//Despliega el Formulario
 else 
 {
 	

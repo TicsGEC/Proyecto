@@ -23,7 +23,7 @@ class tablas{
 		global $DB, $OUTPUT;
 		$tabla = new html_table();
 		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
-		echo"<form method=POST'>";
+		
 		foreach ($archivos as $archivo){
 			$recordd = new stdClass();
 	$recordd->asignatura =$archivo->asignatura ;
@@ -37,10 +37,6 @@ class tablas{
 $action = optional_param('añadir',' ', PARAM_TEXT);
 			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button(' ','Añadir'));
 		
-		if ($action=='anadir'){
-			
-			$DB->insert_record('elecciones',$recordd);
-		}
 		}
 		
 		return $tabla;
@@ -59,4 +55,24 @@ $action = optional_param('añadir',' ', PARAM_TEXT);
 		return $tabla2;
 	
 }
+
+
+public static function armareleccion($archivos=null){
+	$tablaeleccion = new html_table();
+	$tablaeleccion->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
+
+	foreach ($elecciones as $eleccion){
+
+	 $action = optional_param('añadir',' ', PARAM_TEXT);
+	 $tablaeleccion->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo);
+
+	}
+
+	return $tablaeleccion;
+
+}
+
+
+
+
 }
