@@ -13,6 +13,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+require_once (dirname ( __FILE__ ) . '/../../config.php');
+require_once ("$CFG->libdir/formslib.php");
 
 defined('MOODLE_INTERNAL') || die();
 class tablas{
@@ -21,14 +23,38 @@ class tablas{
 		global $DB, $OUTPUT;
 		$tabla = new html_table();
 		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
-		
+		$recordd = new stdClass();
 		foreach ($archivos as $archivo){
+	$recordd->asignatura =$archivo->asignatura ;
+	 $recordd->pais = $archivo->pais;
+	$recordd->seccion = $archivo->seccion;
+	 $recordd->contenido = $archivo->contenido;
+	 $recordd->tipoderecursos = $archivo->recurso;
+   $recordd->nombredearchivo = $archivo->nombredearchivo;
+    $recordd->userid=$myuser;
+$action = optional_param('añadir',' ', PARAM_TEXT);
 			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button('','Añadir'));
 		
+		if ($action=='añadir'){
+			
+			$DB->insert_record('elecciones',$recordd);
+		}
 		}
 		
 		return $tabla;
 		
 	}
 	
+	public static function armarbusqueda($data){
+		global $DB, $OUTPUT;
+		$tabla2 = new html_table();
+		$tabla2->head =$head;
+		
+			$tabla2->data[] = $data;
+	
+	
+	
+		return $tabla2;
+	
+}
 }

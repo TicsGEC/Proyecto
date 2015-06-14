@@ -29,6 +29,35 @@
  function xmldb_local_proyecto_upgrade($oldversion) {
  	global $CFG, $DB;
  	$dbman = $DB->get_manager();
+ 	
+ 	
+ 	
+ 	if ($oldversion < 2015061304) {
+ 	
+ 		// Define table elecciones to be created.
+ 		$table = new xmldb_table('elecciones');
+ 	
+ 		// Adding fields to table elecciones.
+ 		$table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+ 		$table->add_field('userid', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('asignatura', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('pais', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('tipoderecursos', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('contenido', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('seccion', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 		$table->add_field('nombredearchivo', XMLDB_TYPE_CHAR, '1333', null, XMLDB_NOTNULL, null, null);
+ 	
+ 		// Adding keys to table elecciones.
+ 		$table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+ 	
+ 		// Conditionally launch create table for elecciones.
+ 		if (!$dbman->table_exists($table)) {
+ 			$dbman->create_table($table);
+ 		}
+ 	
+ 		// Proyecto savepoint reached.
+ 		upgrade_plugin_savepoint(true, 2015061304, 'local', 'proyecto');
+ 	}
      if ($oldversion < 2015061303) {
 
         // Define table local_proyecto to be created.

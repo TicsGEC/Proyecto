@@ -42,6 +42,7 @@ echo ("<br>");
 
 echo $OUTPUT->footer();
 ?>
+$this->add_action_buttons ( true, 'Enviar','index2.php','Agregar Datos');
 echo "<b> Archivos Encontrados </b>"."</br>";
 echo "<table style='width:100%'>"."<tr>"."<th> Asignatura </th> <th> Pais </th> <th> Seccion </th>". "<th> Contenido </th>"." <th> Tipo de Recurso <th>"."<th> Nombre de archivo </th>"."</tr>";
 foreach($archivos as $archivo){
