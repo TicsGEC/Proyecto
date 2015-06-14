@@ -21,7 +21,10 @@ echo $OUTPUT->heading ( 'Ingreso de Datos' );
 
 
 $formulario = new formu();
-if ($formulario->is_cancelled()) {
+
+
+if ($formulario->is_cancelled())
+ {
 	echo 'Usted no Ingreso Datos'."</br>"."</br>";
 	
 	$head=array(' ',' ');
@@ -32,7 +35,10 @@ if ($formulario->is_cancelled()) {
 }
 
  else if ($fromforms = $formulario->get_data()) {
- 	if($fromforms->nombre != null){
+ 	
+ 	if($fromforms->nombre != null)
+ 	{
+ 		
 	$record = new stdClass();
 	$record->asignatura =$fromforms->asignatura ;
 	 $record->pais = $fromforms->pais;
@@ -40,15 +46,36 @@ if ($formulario->is_cancelled()) {
 	 $record->contenido = $fromforms->contenido;
 	 $record->tipoderecursos = $fromforms->recurso;
 $record->nombredearchivo = $fromforms->nombre;
- $lastinsertid= $DB->insert_record('local_proyecto',$record);
 
+$cont= $DB->count_records('local_proyecto',array('asignatura'=>$fromforms->asignatura,'pais'=>$fromforms->pais,'seccion'=>$fromforms->seccion,'contenido'=>$fromforms->contenido,'tipoderecursos'=>$fromforms->recurso,'nombredearchivo'=>$fromforms->nombre));
+
+ 
+ If($cont==0)
+ {
+ 	$lastinsertid= $DB->insert_record('local_proyecto',$record);
  echo "Datos Guardados Correctamente"."</br>";
  $head=array(' ',' ');
  $data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
  $tabla2= tablas::armarbusqueda($data);
  echo html_writer::table($tabla2);
+ }
+
+ 
+ else 
+ {
+ 	echo 'Entrada Duplicada, Pruebe con otro Nombre'."</br>"."</br>";
+ 		
+ 	$head=array(' ',' ');
+ 	$data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+ 	$tabla2= tablas::armarbusqueda($data);
+ 	echo html_writer::table($tabla2);
+ }
+  
  	}
- 	else {
+ 	
+ 	
+ 	else 
+ 	{
  		echo 'Usted no Ingreso Datos'."</br>"."</br>";
  		
  		$head=array(' ',' ');
@@ -56,6 +83,7 @@ $record->nombredearchivo = $fromforms->nombre;
  		$tabla2= tablas::armarbusqueda($data);
  		echo html_writer::table($tabla2);
  	}
+
  } 
 
 

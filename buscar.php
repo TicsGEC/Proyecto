@@ -46,15 +46,12 @@ $archivos= $DB->get_records('local_proyecto',array('asignatura'=>$fromforms->asi
 
 if ($archivos !=NULL){
 	$myuser=$USER->id;
-
 	
-	
-		$tabla= tablas::armartabla($archivos);
-	
-	
+	$tabla= tablas::armartabla($archivos);
 	echo html_writer::table($tabla);
 	
      echo $OUTPUT->single_button('buscar.php','Volver a Buscar');
+    
 	
 	} 
 	
@@ -63,7 +60,10 @@ if ($archivos !=NULL){
 else
 {
 	echo "No se han encontrado Archivos";
-                 }
+             $head=array(' ',' ');
+	$data=array($OUTPUT->single_button('buscar.php','Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+	$tabla2= tablas::armarbusqueda($data);
+	echo html_writer::table($tabla2);    }
        }
 
 

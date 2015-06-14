@@ -23,8 +23,9 @@ class tablas{
 		global $DB, $OUTPUT;
 		$tabla = new html_table();
 		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
-		$recordd = new stdClass();
+		echo"<form method=POST'>";
 		foreach ($archivos as $archivo){
+			$recordd = new stdClass();
 	$recordd->asignatura =$archivo->asignatura ;
 	 $recordd->pais = $archivo->pais;
 	$recordd->seccion = $archivo->seccion;
@@ -32,10 +33,11 @@ class tablas{
 	 $recordd->tipoderecursos = $archivo->recurso;
    $recordd->nombredearchivo = $archivo->nombredearchivo;
     $recordd->userid=$myuser;
+    
 $action = optional_param('añadir',' ', PARAM_TEXT);
-			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button('','Añadir'));
+			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button(' ','Añadir'));
 		
-		if ($action=='añadir'){
+		if ($action=='anadir'){
 			
 			$DB->insert_record('elecciones',$recordd);
 		}

@@ -28,6 +28,9 @@ class formu extends moodleform {
 	function definition() {
 		global $CFG, $OUTPUT;
 		$mform = $this->_form;
+		
+		
+		
 		// Arreglos que contienen datos de select
 		$options0 = array (
 				'Matematicas' => 'Matematicas',
