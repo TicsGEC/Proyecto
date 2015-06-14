@@ -32,6 +32,7 @@ if ($formulario->is_cancelled()) {
 }
 
  else if ($fromforms = $formulario->get_data()) {
+ 	if($fromforms->nombre != null){
 	$record = new stdClass();
 	$record->asignatura =$fromforms->asignatura ;
 	 $record->pais = $fromforms->pais;
@@ -46,7 +47,15 @@ $record->nombredearchivo = $fromforms->nombre;
  $data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
  $tabla2= tablas::armarbusqueda($data);
  echo html_writer::table($tabla2);
-
+ 	}
+ 	else {
+ 		echo 'Usted no Ingreso Datos'."</br>"."</br>";
+ 		
+ 		$head=array(' ',' ');
+ 		$data=array($OUTPUT->single_button('agregar.php','Volver a Ingresar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+ 		$tabla2= tablas::armarbusqueda($data);
+ 		echo html_writer::table($tabla2);
+ 	}
  } 
 
 
