@@ -20,22 +20,14 @@ defined('MOODLE_INTERNAL') || die();
 class tablas{
 	
 	public static function armartabla($archivos=null){
-		global $DB, $OUTPUT;
+		global $DB, $OUTPUT, $USER;
+		
 		$tabla = new html_table();
 		$tabla->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
 		
 		foreach ($archivos as $archivo){
-			$recordd = new stdClass();
-	$recordd->asignatura =$archivo->asignatura ;
-	 $recordd->pais = $archivo->pais;
-	$recordd->seccion = $archivo->seccion;
-	 $recordd->contenido = $archivo->contenido;
-	 $recordd->tipoderecursos = $archivo->recurso;
-   $recordd->nombredearchivo = $archivo->nombredearchivo;
-    $recordd->userid=$myuser;
-    
-$action = optional_param('añadir',' ', PARAM_TEXT);
-			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button(' ','Añadir'));
+    $urll = new moodle_url ( '/local/proyecto/record.php',array('asignatura'=>$archivo->asignatura,'pais'=>$archivo->pais,'seccion'=>$archivo->seccion,'contenido'=>$archivo->contenido,'tipoderecursos'=>$archivo->tipoderecursos,'nombredearchivo'=>$archivo->nombredearchivo,'userid'=>$USER->id));
+			$tabla->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo,$OUTPUT->single_button($urll,'Añadir'));
 		
 		}
 		
@@ -44,7 +36,7 @@ $action = optional_param('añadir',' ', PARAM_TEXT);
 	}
 	
 	public static function armarbusqueda($data){
-		global $DB, $OUTPUT;
+		global $DB, $OUTPUT, $USER;
 		$tabla2 = new html_table();
 		$tabla2->head =$head;
 		
@@ -57,22 +49,23 @@ $action = optional_param('añadir',' ', PARAM_TEXT);
 }
 
 
-public static function armareleccion($archivos=null){
-	$tablaeleccion = new html_table();
-	$tablaeleccion->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
+public static function armareleccion($elecciones=null){
+	global $DB, $OUTPUT, $USER;
+	$tablae = new html_table();
+	$tablae->head = array('Asignatura','Pais','Seccion','Contenido','Tipo de Recursos','Nombre de Archivo','  ');
+	
+	foreach ($elecciones as $eleccion)
+	{
 
-	foreach ($elecciones as $eleccion){
-
-	 $action = optional_param('añadir',' ', PARAM_TEXT);
-	 $tablaeleccion->data[] = array($archivo->asignatura,$archivo->pais,$archivo->seccion,$archivo->contenido,$archivo->tipoderecursos,$archivo->nombredearchivo);
+		$urldel = new moodle_url ( '/local/proyecto/del.php',array('asignatura'=>$eleccion->asignatura,'pais'=>$eleccion->pais,'seccion'=>$eleccion->seccion,'contenido'=>$eleccion->contenido,'tipoderecursos'=>$eleccion->tipoderecursos,'nombredearchivo'=>$eleccion->nombredearchivo,'userid'=>$USER->id));
+		
+	 $tablae->data[] = array($eleccion->asignatura,$eleccion->pais,$eleccion->seccion,$eleccion->contenido,$eleccion->tipoderecursos,$eleccion->nombredearchivo,$OUTPUT->single_button($urldel,'Eliminar'));
 
 	}
 
-	return $tablaeleccion;
+	return $tablae;
 
-}
-
-
+ }
 
 
-}
+   }

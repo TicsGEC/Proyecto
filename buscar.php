@@ -4,7 +4,6 @@ require_once ($CFG->dirroot . '/local/proyecto/searchform.php');
 require_once ($CFG->dirroot . '/local/proyecto/tabla.php');
 global $PAGE, $CFG, $OUTPUT, $DB, $USER;
  require_login ();
- 
 $url = new moodle_url ( '/local/proyecto/buscar.php' );
 $context = context_system::instance ();
 $PAGE->set_url ( $url );

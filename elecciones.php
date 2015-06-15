@@ -22,8 +22,10 @@ $elecciones= $DB->get_records('elecciones',array('userid'=>$myuser));
 if($elecciones!=null)
 {
 	
-	$tablaelecciones= tablas::armartabla($elecciones);
-	echo html_writer::table($tablaelecciones);
+	$tablae = tablas::armareleccion($elecciones);
+	echo html_writer::table($tablae);
+	
+	
 	
 	$head=array(' ');
 	$data=array($OUTPUT->single_button('index.php','Volver a Mis Opciones'));
