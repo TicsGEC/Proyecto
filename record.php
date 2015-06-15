@@ -11,8 +11,8 @@ $PAGE->navbar->add ( 'Record' );
 $PAGE->navbar->add ( 'INDEX' );
 echo $OUTPUT->header ();
 echo $OUTPUT->heading ( 'Record' );
-
-
+$urlrec = new moodle_url ( '/local/proyecto/buscar.php',$recuperarbusqueda);
+$recuperarbusqueda=array('userid'=>required_param ( 'userid', PARAM_TEXT ),'seccion'=>required_param ( 'seccion', PARAM_TEXT ),'nombredearchivo'=>required_param ( 'nombredearchivo', PARAM_TEXT ),'asignatura'=>required_param ( 'asignatura', PARAM_TEXT ),'contenido'=>required_param ( 'contenido', PARAM_TEXT ),'tipoderecursos'=>required_param ( 'tipoderecursos', PARAM_TEXT ),'pais'=>required_param ( 'pais', PARAM_TEXT ));
 $recordd = new stdClass();
 $recordd->seccion = required_param ( 'seccion', PARAM_TEXT );
 $recordd->nombredearchivo = required_param ( 'nombredearchivo', PARAM_TEXT);
@@ -28,14 +28,18 @@ $datos=$DB->count_records('elecciones',array('userid'=>required_param ( 'userid'
 
 If($datos != 0)
 {
-echo "No se Puede Añadir";	
+echo "Dato ya se encuentra añadido";	
+$head=array(' ',' ');
+$data=array($OUTPUT->single_button($urlrec,'Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+$tabla2= tablas::armarbusqueda($data);
+echo html_writer::table($tabla2);
 }
 else
  { 
  	$lastinsertid= $DB->insert_record('elecciones',$recordd);
  	echo "Datos Guardados Correctamente"."</br>";
  	$head=array(' ',' ');
- 	$data=array($OUTPUT->single_button('buscar.php','Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
+ 	$data=array($OUTPUT->single_button($urlrec,'Volver a Buscar'),$OUTPUT->single_button('index.php','Volver a Mis Opciones'));
  	$tabla2= tablas::armarbusqueda($data);
  	echo html_writer::table($tabla2);
 
